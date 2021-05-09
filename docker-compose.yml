@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./messaging/.
+    ports: 
+      - "8081:8081"
+  
+  frontend:
+    build: ./frontend-vue/.
+    command: npm run serve --port 8090
+    ports: 
+      - "8090:8090"
+  
+  nginx:
+    build: ./nginx/.
+    ports:
+      - "5000:80"
+    depends_on:
+    - backend
+
+      
